@@ -9,6 +9,7 @@ public class ParkingLot {
     private final List<Integer> remainingSlot = new ArrayList<>();
 
     private final Map<Integer, String> slotReqNoMap = new HashMap<>();
+
     /**
      * Handle command create_parking_lot with input numOfLot by parsing string into integer
      *
@@ -27,19 +28,26 @@ public class ParkingLot {
         }
     }
 
-    public void park(String regNo){
-        if(maxLot == 0){
+
+    /**
+     * Handle command for parking register with input regNo
+     * the output is number of allocation slot
+     *
+     * @param regNo as the registration number
+     */
+    public void park(String regNo) {
+        if (maxLot == 0) {
             System.out.println("Sorry, parking lot isn't created");
             return;
         }
-        if(slotReqNoMap.size() == maxLot){
+        if (slotReqNoMap.size() == maxLot) {
             System.out.println("Sorry, parking lot is full");
             return;
         }
 
         // Sorting slot ascending order, so when this method is called, the value is sorted
         Collections.sort(remainingSlot);
-        String slotNo  = remainingSlot.get(0).toString();
+        String slotNo = remainingSlot.get(0).toString();
         slotReqNoMap.put(Integer.parseInt(slotNo), regNo);
         System.out.println(String.format("Allocated slot number: %s", slotNo));
         remainingSlot.remove(0);
