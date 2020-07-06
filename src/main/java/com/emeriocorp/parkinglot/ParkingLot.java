@@ -9,6 +9,11 @@ public class ParkingLot {
     // Remaining slot to handle sequential number generated in created parking slot
     private final List<Integer> remainingSlot = new ArrayList<>();
 
+    /**
+     * Handle command create_parking_lot with input numOfLot by parsing string into integer
+     *
+     * @param numOfLot is the value of create_parking_lot a.k.a 6
+     */
     public void createParkingLot(String numOfLot) {
         try {
             setMaxLot(Integer.parseInt(numOfLot));
@@ -29,4 +34,10 @@ public class ParkingLot {
     public void setMaxLot(int maxLot) {
         this.maxLot = maxLot;
     }
+
+    public List<Integer> getRemainingSlot() {
+        return remainingSlot;
+    }
+
+
 }
