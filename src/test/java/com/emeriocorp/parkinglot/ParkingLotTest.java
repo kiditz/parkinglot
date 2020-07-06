@@ -1,13 +1,16 @@
 package com.emeriocorp.parkinglot;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 public class ParkingLotTest {
-    ParkingLot parkingLot;
+    private ParkingLot parkingLot;
 
     @Before
     public void setUp() {
@@ -26,5 +29,33 @@ public class ParkingLotTest {
         parkingLot.createParkingLot("Hei");
         assertThat(parkingLot.getMaxLot(), equalTo(0));
         assertThat(parkingLot.getRemainingSlot().size(), equalTo(0));
+    }
+
+    @Test
+    public void testParkWithRegNo() {
+        parkingLot.createParkingLot("2");
+        parkingLot.park("KA-01-HH-1234");
+        parkingLot.park("KA-01-HH-9999");
+        Map<Integer, String> slotMap = parkingLot.getSlotReqNoMap();
+        assertThat(slotMap.get(1), equalTo("KA-01-HH-1234"));
+        assertThat(slotMap.get(2), equalTo("KA-01-HH-9999"));
+        assertThat(parkingLot.getRemainingSlot().size(), equalTo(0));
+    }
+
+    @Test
+    public void testParkWithRegNoOverCapacity() {
+        parkingLot.createParkingLot("1");
+        parkingLot.park("KA-01-HH-1234");
+        Map<Integer, String> slotMap = parkingLot.getSlotReqNoMap();
+        assertThat(slotMap.get(1), equalTo("KA-01-HH-1234"));
+        assertThat(parkingLot.getRemainingSlot().size(), equalTo(0));
+        parkingLot.park("KA-01-HH-9999");
+        assertThat(slotMap.get(2), equalTo(null));
+    }
+
+
+    @After
+    public void tearDown(){
+        parkingLot = null;
     }
 }
