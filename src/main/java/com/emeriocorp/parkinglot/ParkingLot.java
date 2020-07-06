@@ -4,10 +4,12 @@ import java.util.*;
 
 public class ParkingLot {
     // Max lot to handle the maximum value of slot
+    static int PRICE = 10;
+    static int FIRST_HOUR = 2;
     private int maxLot = 0;
     // Remaining slot to handle sequential number generated in created parking slot
     private final List<Integer> remainingSlot = new ArrayList<>();
-
+    // In memory database to save temporary data slot and reqNo request with kv pair
     private final Map<Integer, String> slotReqNoMap = new HashMap<>();
 
     /**
@@ -51,6 +53,54 @@ public class ParkingLot {
         slotReqNoMap.put(Integer.parseInt(slotNo), regNo);
         System.out.println(String.format("Allocated slot number: %s", slotNo));
         remainingSlot.remove(0);
+    }
+
+    /**
+     * Handle car who's leave park with regNo and hour as a parameter and the
+     * print the result regNo, slotNO, and charge
+     *
+     * @param regNo     the regNo input by user
+     * @param numOfHour the total hour input by user
+     */
+    public void leave(String regNo, String numOfHour) {
+        int hour;
+        int slotNo;
+        try {
+            hour = Integer.parseInt(numOfHour);
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid number for hour");
+            return;
+        }
+        slotNo = Optional.ofNullable(getKey(slotReqNoMap, regNo)).orElse(0);
+        if (slotNo == 0) {
+            System.err.println(String.format("Not found reg no with value %s", regNo));
+            return;
+        }
+        int charge = calculateCharge(regNo, hour);
+        String message = "Registration number %s with Slot Number %d is free with Charge %d";
+        System.out.println(String.format(message, regNo, slotNo, charge));
+        slotReqNoMap.remove(slotNo);
+        remainingSlot.add(slotNo);
+    }
+
+    private int calculateCharge(String regNo, int totalHour) {
+        return (totalHour - FIRST_HOUR) * PRICE + (FIRST_HOUR * PRICE);
+    }
+
+    /**
+     * Map get key from value map
+     *
+     * @param map   is the input map
+     * @param value is the value you search
+     * @return the ke from value map
+     */
+    private <K, V> K getKey(Map<K, V> map, V value) {
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
 
