@@ -53,6 +53,14 @@ public class ParkingLotTest {
         assertThat(slotMap.get(2), equalTo(null));
     }
 
+    @Test
+    public void testParkWithRegNoZeroCapacity() {
+        parkingLot.createParkingLot("0");
+        parkingLot.park("KA-01-HH-1234");
+        Map<Integer, String> slotMap = parkingLot.getSlotReqNoMap();
+        assertThat(slotMap.get(2), equalTo(null));
+    }
+
 
     @After
     public void tearDown(){
