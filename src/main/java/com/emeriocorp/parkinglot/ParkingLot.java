@@ -65,6 +65,10 @@ public class ParkingLot {
      * @param numOfHour the total hour input by user
      */
     public void leave(String regNo, String numOfHour) {
+        if (maxLot == 0) {
+            System.out.println("Sorry, parking lot isn't created");
+            return;
+        }
         int hour;
         int slotNo;
         try {
