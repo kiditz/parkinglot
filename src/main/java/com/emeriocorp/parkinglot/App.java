@@ -56,7 +56,7 @@ public class App {
                     return;
                 }
                 parser.parse(inputString);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.err.println("Ops, Error to parse input");
                 e.printStackTrace();
             }
