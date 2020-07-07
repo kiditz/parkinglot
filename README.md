@@ -1,5 +1,5 @@
 # Parking Lot Problem
-Hei all this problem found as my interview task for solving park ticketing issue with question:
+Hei all this problem found as my interview task to solving park ticketing issue with question:
 ```
 I own a parking lot that can hold up to 'n' cars at any given point in time. Each slot is
 given a number starting at 1 increasing with increasing distance from the entry point
