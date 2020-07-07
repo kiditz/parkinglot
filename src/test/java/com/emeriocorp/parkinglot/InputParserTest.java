@@ -47,7 +47,7 @@ public class InputParserTest {
         assertThat(resource, notNullValue());
         File inputFile = new File(resource.getFile());
         assertThat(inputFile.getName(), equalTo("file_input.txt"));
-        parser.parseAll(inputFile);
+        parser.parseFile(inputFile);
         verify(out).println(startsWith("Created"));
     }
 

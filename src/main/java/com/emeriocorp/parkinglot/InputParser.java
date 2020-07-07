@@ -39,7 +39,7 @@ public class InputParser {
 
     }
 
-    public void parseAll(File file) throws IOException {
+    public void parseFile(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         while (true){
             String line = reader.readLine();
