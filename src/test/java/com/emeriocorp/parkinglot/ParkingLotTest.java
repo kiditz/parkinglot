@@ -72,6 +72,15 @@ public class ParkingLotTest {
         assertThat(parkingLot.getRemainingSlot().size(), equalTo(2));
     }
 
+    @Test
+    public void testStatusLot(){
+        parkingLot.createParkingLot("2");
+        parkingLot.park("KA-01-HH-1234");
+        parkingLot.park("KA-01-HH-9999");
+        parkingLot.status();
+
+    }
+
 
 
 
