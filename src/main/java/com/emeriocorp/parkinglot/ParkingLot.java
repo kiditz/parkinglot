@@ -3,10 +3,12 @@ package com.emeriocorp.parkinglot;
 import java.util.*;
 
 public class ParkingLot {
+    // Config FIRST HOUR by call ParkingLot.FIRST_HOUR = ? if you wanted to change
+    public static int FIRST_HOUR = 2;
     // Max lot to handle the maximum value of slot
-    static int PRICE = 10;
-    static int FIRST_HOUR = 2;
     private int maxLot = 0;
+    // Config PRICE by call ParkingLot.PRICE = ? if you wanted to change
+    public static int PRICE = 10;
     // Remaining slot to handle sequential number generated in created parking slot
     private final List<Integer> remainingSlot = new ArrayList<>();
     // In memory database to save temporary data slot and reqNo request with kv pair
@@ -85,6 +87,10 @@ public class ParkingLot {
 
     private int calculateCharge(int totalHour) {
         return ((totalHour - FIRST_HOUR) * PRICE) + PRICE;
+    }
+
+    public void status(){
+
     }
 
     /**
