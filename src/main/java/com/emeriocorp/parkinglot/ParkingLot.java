@@ -76,15 +76,15 @@ public class ParkingLot {
             System.err.println(String.format("Not found reg no with value %s", regNo));
             return;
         }
-        int charge = calculateCharge(regNo, hour);
+        int charge = calculateCharge(hour);
         String message = "Registration number %s with Slot Number %d is free with Charge %d";
         System.out.println(String.format(message, regNo, slotNo, charge));
         slotReqNoMap.remove(slotNo);
         remainingSlot.add(slotNo);
     }
 
-    private int calculateCharge(String regNo, int totalHour) {
-        return (totalHour - FIRST_HOUR) * PRICE + (FIRST_HOUR * PRICE);
+    private int calculateCharge(int totalHour) {
+        return ((totalHour - FIRST_HOUR) * PRICE) + PRICE;
     }
 
     /**

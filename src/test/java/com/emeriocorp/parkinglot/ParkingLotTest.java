@@ -61,9 +61,23 @@ public class ParkingLotTest {
         assertThat(slotMap.get(2), equalTo(null));
     }
 
+    @Test
+    public void testLeaveParking() {
+        parkingLot.createParkingLot("2");
+        parkingLot.park("KA-01-HH-1234");
+        parkingLot.park("KA-01-HH-9999");
+        parkingLot.leave("KA-01-HH-1234", "4");
+        assertThat(parkingLot.getRemainingSlot().size(), equalTo(1));
+        parkingLot.leave("KA-01-HH-9999", "3");
+        assertThat(parkingLot.getRemainingSlot().size(), equalTo(2));
+    }
+
+
+
+
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         parkingLot = null;
     }
 }
