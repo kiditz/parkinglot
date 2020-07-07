@@ -26,7 +26,7 @@ public class ParkingLot {
             for (int i = 1; i <= getMaxLot(); i++) {
                 remainingSlot.add(i);
             }
-            System.out.println("Created parking lot with 6 slots");
+            System.out.println(String.format("Created parking lot with %s slots", getMaxLot()));
         } catch (NumberFormatException e) {
             System.err.println("Invalid lot number");
             System.err.println();
