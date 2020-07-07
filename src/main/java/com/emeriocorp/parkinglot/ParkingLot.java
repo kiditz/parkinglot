@@ -80,7 +80,7 @@ public class ParkingLot {
         }
         slotNo = Optional.ofNullable(getKey(slotReqNoMap, regNo)).orElse(0);
         if (slotNo == 0) {
-            System.err.println(String.format("Registration number %s not found", regNo));
+            System.out.println(String.format("Registration number %s not found", regNo));
             return;
         }
         int charge = calculateCharge(hour);
