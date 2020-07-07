@@ -93,8 +93,23 @@ public class ParkingLot {
         return ((totalHour - FIRST_HOUR) * PRICE) + PRICE;
     }
 
-    public void status(){
-
+    public void status() {
+        if (maxLot == 0) {
+            System.out.println("Sorry, parking lot isn't created");
+            return;
+        }
+        if(slotReqNoMap.isEmpty()){
+            System.out.println("Parking lot is empty");
+            return;
+        }
+        System.out.println("Slot No. Registration No.");
+        for (int i = 1; i <= getMaxLot(); i++) {
+            Integer slot = i;
+            if(slotReqNoMap.containsKey(slot)){
+                String regNo = slotReqNoMap.get(i);
+                System.out.println(i + "\t\t" + regNo);
+            }
+        }
     }
 
     /**
