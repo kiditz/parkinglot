@@ -1,5 +1,6 @@
 package com.emeriocorp.parkinglot;
 
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -36,6 +37,16 @@ public class InputParser {
                 break;
         }
 
+    }
+
+    public void parseAll(File file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        while (true){
+            String line = reader.readLine();
+            if(line == null)
+                break;
+            parse(line);
+        }
     }
 
     private void invokeMethod(Method method, Object... inputs) {
